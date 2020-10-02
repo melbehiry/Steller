@@ -11,6 +11,7 @@ repositories {
     google()
     jcenter()
     mavenCentral()
+    maven { setUrl("https://dl.bintray.com/ekito/koin") }
 }
 dependencies {
     implementation(project(":shared"))

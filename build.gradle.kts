@@ -4,6 +4,7 @@ buildscript {
         jcenter()
         google()
         mavenCentral()
+        maven { setUrl("https://dl.bintray.com/ekito/koin") }
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")

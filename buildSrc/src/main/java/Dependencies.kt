@@ -4,9 +4,9 @@ object Versions {
     const val kotlinCoroutines = "1.3.9-native-mt"
     const val ktor = "1.4.0"
     const val kotlinxSerialization = "1.0.0-RC"
-    const val koin = "2.1.6"
+    const val koin = "3.0.0-alpha-4"
     const val sqlDelight = "1.4.2"
-    const val gradleVersion = "4.0.1"
+    const val gradleVersion = "4.2.0-alpha12"
 
     const val sqliteJdbcDriver = "3.30.1"
     const val floorPlan = "0.2"
@@ -28,7 +28,7 @@ object Versions {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 28
+    const val compile = 29
     const val target = compile
 }
 
