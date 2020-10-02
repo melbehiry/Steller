@@ -2,12 +2,7 @@ package com.elbehiry.steller.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.elbehiry.steller.shared.Greeting
 import android.widget.TextView
-
-fun greet(): String {
-    return Greeting().greeting()
-}
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +10,5 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
     }
 }
