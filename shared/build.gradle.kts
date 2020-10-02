@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlin-android-extensions")
+    id("kotlinx-serialization")
 }
 group = "com.elbehiry.steller"
 version = "1.0-SNAPSHOT"
