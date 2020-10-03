@@ -15,7 +15,7 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
      *
      * @param parameters the input parameters to run the use case with
      */
-    suspend fun invoke(parameters: P): Result<R> {
+    suspend operator fun invoke(parameters: P): Result<R> {
         return try {
             withContext(coroutineDispatcher) {
                 execute(parameters).let {
