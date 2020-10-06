@@ -41,7 +41,7 @@
 ## Contributing
 Steller is a barebones app right now and there are many improvements to make.
 a lot of stuff to be done, feel free to contribute 🤩
-just create your own Api Key [here](https://unsplash.com/developers) and add it into [NetworkConstants.kt] file. 😉
+just create your own Api Key [here](https://unsplash.com/developers) and add it into [NetworkConstants.kt](https://github.com/Elbehiry/Steller/blob/master/shared/src/commonMain/kotlin/com/elbehiry/steller/shared/remote/NetworkConstants.kt) file. 😉
 
 
 ## Find this repository useful? :heart:
