@@ -1,5 +1,7 @@
 package com.elbehiry.steller.shared.result
 
+import com.elbehiry.steller.shared.result.Result.Success
+
 /**
  * A generic class that holds a value with its loading status.
  * @param <T>
@@ -17,3 +19,6 @@ sealed class Result <out R>{
         }
     }
 }
+
+val <T> Result<T>.data: T?
+    get() = (this as? Success)?.data
