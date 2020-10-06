@@ -6,10 +6,11 @@
 
     <application
         android:name=".StellerApp"
+        android:label="@string/app_name"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
