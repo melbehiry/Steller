@@ -1,5 +1,6 @@
 package com.elbehiry.steller.shared
 
-actual class Platform actual constructor() {
-    actual val platform: String = "Android ${android.os.Build.VERSION.SDK_INT}"
-}
+import android.content.Context
+
+lateinit var appContext : Context
+

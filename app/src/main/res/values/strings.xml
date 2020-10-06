@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Steller</string>
+    <string name="home_tab">Home</string>
+    <string name="search_tab">search</string>
+</resources>

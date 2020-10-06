@@ -8,7 +8,7 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             if (requested.id.namespace == "com.android" || requested.id.name == "kotlin-android-extensions") {
-                useModule("com.android.tools.build:gradle:4.0.1")
+                useModule("com.android.tools.build:gradle:4.2.0-alpha12")
             }
         }
     }
@@ -16,6 +16,6 @@ pluginManagement {
 rootProject.name = "Steller"
 
 
-include(":app")
-include(":shared")
+include(":app",":shared")
+enableFeaturePreview("GRADLE_METADATA")
 
