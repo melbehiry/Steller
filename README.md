@@ -22,18 +22,17 @@
 
 ## Tech stack & Open-source libraries
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- [Koin](https://github.com/InsertKoinIO/koin) for dependency injection.
+- [Koin](https://github.com/InsertKoinIO/koin)
 - [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)
 - [Ktor client library](https://github.com/ktorio/ktor)
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
 - [Koin](https://github.com/InsertKoinIO/koin)
-- [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
 - JetPack
-  - Compose - A modern toolkit for building native Android UI.
-  - LiveData - notify domain layer data to views.
-  - Lifecycle - dispose observing data when lifecycle state changes.
-  - ViewModel - UI related data holder, lifecycle aware.
+  - [Jetpack Compose](https://developer.android.com/jetpack/compose) A modern toolkit for building native Android UI.
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+  - [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - Architecture
   - MVVM Architecture (Declarative View - ViewModel - Model)
   - Repository pattern
@@ -48,7 +47,7 @@ just create your own Api Key [here](https://unsplash.com/developers) and add it 
 Support it by joining __[stargazers](https://github.com/elbehiry/steller/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/elbehiry)__ me for my next creations! 🤩
 
-# License
+## License
 ```xml
 Designed and developed by 2020 elbehiry
 
