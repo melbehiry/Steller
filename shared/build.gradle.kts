@@ -12,7 +12,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     gradlePluginPortal()
     google()
-    jcenter()
     mavenCentral()
     maven { setUrl("https://dl.bintray.com/ekito/koin") }
 }
@@ -41,7 +40,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
 
                 // koin
-                api("org.koin:koin-core:${Versions.koin}")
+                implementation(Koin.core)
             }
         }
         val androidMain by getting {
@@ -60,13 +59,11 @@ kotlin {
     }
 }
 android {
-    compileSdkVersion(AndroidSdk.compile)
+    compileSdk = AndroidSdk.compile
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(AndroidSdk.min)
-        targetSdkVersion(AndroidSdk.target)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AndroidSdk.min
+        targetSdk = AndroidSdk.target
     }
     buildTypes {
         getByName("release") {
