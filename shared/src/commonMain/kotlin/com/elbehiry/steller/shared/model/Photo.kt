@@ -24,7 +24,8 @@ data class Photo(
     val urls: Urls? = null,
     val links: Links? = null,
     val user: User? = null,
-    val statistics: PhotoStatistics? = null
+    val statistics: PhotoStatistics? = null,
+    var saved: Boolean = false
 )
 
 @Serializable

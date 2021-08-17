@@ -19,20 +19,27 @@ class MainViewModel(
         }
     }
 
-    val photoList : LiveData<List<Photo>> = resultPhotos.map {
+    val photoList: LiveData<List<Photo>> = resultPhotos.map {
         it.data ?: listOf()
     }
 
-    val isLoading : LiveData<Boolean> = resultPhotos.map {
+    val isLoading: LiveData<Boolean> = resultPhotos.map {
         it == Result.Loading
     }
 
+    init {
+        getImages()
+    }
 
-    fun getImages() {
+    private fun getImages() {
         photoParam.value = createPhotosParam()
     }
 
     private fun createPhotosParam(): GetPhotosUseCase.Params {
         return GetPhotosUseCase.Params.create(1, 50, "LATEST")
+    }
+
+    fun onBookMark(photo: Photo) {
+
     }
 }

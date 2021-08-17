@@ -1,32 +1,46 @@
 package com.elbehiry.steller.app.ui
 
-import android.os.Parcelable
-import androidx.compose.runtime.Immutable
-import com.elbehiry.steller.app.ui.util.Navigator
-import kotlinx.android.parcel.Parcelize
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.elbehiry.steller.app.ui.main.MainContent
 
-/**
- * Models the screens in the app and any arguments they require.
- */
-sealed class Destination : Parcelable {
-    @Parcelize
-    object Home : Destination()
 
-    @Immutable
-    @Parcelize
-    data class PhotoDetails(val photoId: String) : Destination()
+object MainDestinations {
+    const val MAIN_ROUTE = "main"
+    const val Main_ROUTE = "details"
 }
 
-/**
- * Models the navigation actions in the app.
- */
-class Actions(navigator: Navigator<Destination>) {
+@ExperimentalFoundationApi
+@Composable
+fun NavGraph(
+    startDestination: String = MainDestinations.MAIN_ROUTE
+) {
+    val navController = rememberNavController()
+    val actions = remember(navController) { MainActions(navController) }
 
-    val selectPhoto: (String) -> Unit = { photoId ->
-        navigator.navigate(Destination.PhotoDetails(photoId))
+    NavHost(
+        navController = navController,
+        startDestination = startDestination,
+    ) {
+        composable((MainDestinations.MAIN_ROUTE)) {
+            MainContent{
+
+            }
+        }
     }
+}
 
-    val pressOnBack: () -> Unit = {
-        navigator.back()
+class MainActions(
+    navController: NavHostController
+) {
+    val onDetailsContent: () -> Unit = {
+        navController.navigate(
+            route = MainDestinations.Main_ROUTE
+        )
     }
 }
