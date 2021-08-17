@@ -9,25 +9,27 @@ import androidx.compose.ui.graphics.Color
 
 
 private val DarkColorPalette = darkColors(
-    primary = yellow200,
-    secondary = blue200,
+    primary = Green500,
+    secondary = Green500,
     onSecondary = Color.Black,
-    surface = yellowDarkPrimary,
+    surface = darkPrimary,
     background = background,
     onBackground = background800,
     primaryVariant = purple500,
-    onPrimary = Color.White,
+    onPrimary = Color.Black,
+    onSurface = Color.White
 )
 
 private val LightColorPalette = lightColors(
-    background = Color.White,
-    onBackground = Color.White,
-    surface = Color.White,
-    primary = purple200,
+    primary = Green500,
+    secondary = Green500,
+    onSecondary = Color.Black,
+    surface = darkPrimary,
+    background = background,
+    onBackground = background800,
     primaryVariant = purple500,
-    secondary = purple500,
-    onPrimary = Color.White,
-    onSecondary = Color.White
+    onPrimary = Color.Black,
+    onSurface = Color.White
 )
 
 @Composable
@@ -48,9 +50,9 @@ fun stellerComposeTheme(
     }
 
     MaterialTheme(
-        colors = colors,
-        typography = typography,
+        colors = DarkColorPalette,
+        typography = DarkTypography,
         shapes = shapes,
-        content
+        content = content
     )
 }

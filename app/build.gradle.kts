@@ -9,7 +9,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     gradlePluginPortal()
     google()
-    jcenter()
     mavenCentral()
     maven { setUrl("https://dl.bintray.com/ekito/koin") }
 }
@@ -23,25 +22,35 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
     implementation("androidx.core:core-ktx:${Versions.androidXcore}")
-    implementation(Compose.ui)
-    implementation(Compose.uiGraphics)
-    implementation(Compose.uiTooling)
-    implementation(Compose.foundationLayout)
-    implementation(Compose.material)
-    implementation(Compose.runtime)
-    implementation(Compose.runtimeLiveData)
-    implementation("dev.chrisbanes.accompanist:accompanist-coil:${Versions.coilVersion}")
+    // COMPOSE
+    implementation(Compose.COMPOSE_RUNTIME)
+    implementation(Compose.COMPOSE_UI)
+    implementation(Compose.COMPOSE_FOUNDATION_LAYOUT)
+    implementation(Compose.COMPOSE_MATERIAL)
+    implementation(Compose.COMPOSE_UI_GRAPHICS)
+    implementation(Compose.COMPOSE_UI_TOOLING)
+    implementation(Compose.COMPOSE_RUNTIME_LIVEDATA)
+    implementation(Compose.COMPOSE_ANIMATION)
+    implementation(Compose.COMPOSE_NAVIGATION)
+    implementation(Compose.COMPOSE_ICON)
+    implementation(Compose.COMPOSE_ACTIVITY)
+    implementation(Compose.COMPOSE_CONSTRAINT)
+    implementation(Compose.COMPOSE_PAGING)
+    implementation(Compose.COMPOSE_VIEW_MODEL)
+
+    implementation(Compose.INSETS)
+    implementation(Compose.COIL)
     implementation(Koin.core)
+    implementation(Koin.jetpackCompose)
     implementation(Koin.android)
-    implementation(Koin.androidViewModel)
 
 }
 android {
-    compileSdkVersion(AndroidSdk.compile)
+    compileSdk = AndroidSdk.compile
     defaultConfig {
         applicationId = "com.elbehiry.steller.app"
-        minSdkVersion(AndroidSdk.min)
-        targetSdkVersion(AndroidSdk.target)
+        minSdk = AndroidSdk.min
+        targetSdk = AndroidSdk.target
         versionCode = 1
         versionName = "1.0"
     }
@@ -66,13 +75,13 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
         kotlinCompilerExtensionVersion = Versions.compose
     }
     kotlinOptions {
-        allWarningsAsErrors = true
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
-        freeCompilerArgs = freeCompilerArgs + "-Xallow-jvm-ir-dependencies"
+        freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.ExperimentalStdlibApi"
+        freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.ExperimentalStdlibApi"
+        freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.time.ExperimentalTime"
     }
 }
