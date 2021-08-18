@@ -6,5 +6,8 @@ pluginManagement {
     }
 }
 rootProject.name = "Steller"
-include(":app", ":shared")
-
+include(
+    ":app",
+    ":shared",
+    ":depconstraints"
+    )
