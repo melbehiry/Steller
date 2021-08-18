@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
     id("kotlin-android-extensions")
 }
 group = "com.elbehiry.steller"
@@ -13,6 +14,8 @@ repositories {
     maven { setUrl("https://dl.bintray.com/ekito/koin") }
 }
 dependencies {
+    api(platform(project(":depconstraints")))
+    kapt(platform(project(":depconstraints")))
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.2.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
@@ -21,38 +24,37 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.core:core-ktx:${Versions.androidXcore}")
+    implementation("androidx.core:core-ktx:1.5.0-alpha02")
     // COMPOSE
-    implementation(Compose.COMPOSE_RUNTIME)
-    implementation(Compose.COMPOSE_UI)
-    implementation(Compose.COMPOSE_FOUNDATION_LAYOUT)
-    implementation(Compose.COMPOSE_MATERIAL)
-    implementation(Compose.COMPOSE_UI_GRAPHICS)
-    implementation(Compose.COMPOSE_UI_TOOLING)
-    implementation(Compose.COMPOSE_RUNTIME_LIVEDATA)
-    implementation(Compose.COMPOSE_ANIMATION)
-    implementation(Compose.COMPOSE_NAVIGATION)
-    implementation(Compose.COMPOSE_ICON)
-    implementation(Compose.COMPOSE_ACTIVITY)
-    implementation(Compose.COMPOSE_CONSTRAINT)
-    implementation(Compose.COMPOSE_PAGING)
-    implementation(Compose.COMPOSE_VIEW_MODEL)
+    implementation(Libs.COMPOSE_RUNTIME)
+    implementation(Libs.COMPOSE_UI)
+    implementation(Libs.COMPOSE_FOUNDATION_LAYOUT)
+    implementation(Libs.COMPOSE_MATERIAL)
+    implementation(Libs.COMPOSE_UI_GRAPHICS)
+    implementation(Libs.COMPOSE_UI_TOOLING)
+    implementation(Libs.COMPOSE_RUNTIME_LIVEDATA)
+    implementation(Libs.COMPOSE_ANIMATION)
+    implementation(Libs.COMPOSE_NAVIGATION)
+    implementation(Libs.COMPOSE_ICON)
+    implementation(Libs.COMPOSE_ACTIVITY)
+    implementation(Libs.COMPOSE_CONSTRAINT)
+    implementation(Libs.COMPOSE_VIEW_MODEL)
 
-    implementation(Compose.INSETS)
-    implementation(Compose.COIL)
-    implementation(Koin.core)
-    implementation(Koin.jetpackCompose)
-    implementation(Koin.android)
+    implementation(Libs.INSETS)
+    implementation(Libs.COIL)
+    implementation(Libs.KOIN_CORE)
+    implementation(Libs.KOIN_COMPOSE)
+    implementation(Libs.KOIN_ANDROID)
 
 }
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = Versions.COMPILE_SDK
     defaultConfig {
         applicationId = "com.elbehiry.steller.app"
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.MIN_SDK
+        targetSdk = Versions.TARGET_SDK
+        versionCode = Versions.versionCodeMobile
+        versionName = Versions.versionName
     }
     buildTypes {
         getByName("release") {
@@ -75,7 +77,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.COMPOSE
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()

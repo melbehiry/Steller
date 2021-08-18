@@ -27,31 +27,32 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":depconstraints"))
                 // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
 
                 // Ktor
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-core:1.4.0")
+                implementation("io.ktor:ktor-client-json:1.4.0")
+                implementation("io.ktor:ktor-client-logging:1.4.0")
+                implementation("io.ktor:ktor-client-serialization:1.4.0")
 
                 // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.KOTLIN_SERIALIZATION}")
 
                 // koin
-                implementation(Koin.core)
+                implementation(Libs.KOIN_CORE)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-android:1.4.0")
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:${Versions.junit}")
+                implementation("junit:junit:4.13")
             }
         }
         val iosMain by getting
@@ -59,11 +60,11 @@ kotlin {
     }
 }
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = Versions.COMPILE_SDK
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
+        minSdk = Versions.MIN_SDK
+        targetSdk = Versions.TARGET_SDK
     }
     buildTypes {
         getByName("release") {
