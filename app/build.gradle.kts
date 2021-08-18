@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
     id("kotlin-android-extensions")
 }
 group = "com.elbehiry.steller"
@@ -9,41 +10,17 @@ version = "1.0-SNAPSHOT"
 repositories {
     gradlePluginPortal()
     google()
-    jcenter()
     mavenCentral()
     maven { setUrl("https://dl.bintray.com/ekito/koin") }
 }
-dependencies {
-    implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.core:core-ktx:${Versions.androidXcore}")
-    implementation(Compose.ui)
-    implementation(Compose.uiGraphics)
-    implementation(Compose.uiTooling)
-    implementation(Compose.foundationLayout)
-    implementation(Compose.material)
-    implementation(Compose.runtime)
-    implementation(Compose.runtimeLiveData)
-    implementation("dev.chrisbanes.accompanist:accompanist-coil:${Versions.coilVersion}")
-    implementation(Koin.core)
-    implementation(Koin.android)
-    implementation(Koin.androidViewModel)
-
-}
 android {
-    compileSdkVersion(AndroidSdk.compile)
+    compileSdk = Versions.COMPILE_SDK
     defaultConfig {
         applicationId = "com.elbehiry.steller.app"
-        minSdkVersion(AndroidSdk.min)
-        targetSdkVersion(AndroidSdk.target)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.MIN_SDK
+        targetSdk = Versions.TARGET_SDK
+        versionCode = Versions.versionCodeMobile
+        versionName = Versions.versionName
     }
     buildTypes {
         getByName("release") {
@@ -66,13 +43,43 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.COMPOSE
     }
     kotlinOptions {
-        allWarningsAsErrors = true
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
-        freeCompilerArgs = freeCompilerArgs + "-Xallow-jvm-ir-dependencies"
+        freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.ExperimentalStdlibApi"
+        freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.ExperimentalStdlibApi"
+        freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.time.ExperimentalTime"
     }
+}
+dependencies {
+    api(platform(project(":depconstraints")))
+    kapt(platform(project(":depconstraints")))
+    implementation(project(":shared"))
+    implementation(Libs.APP_COMPAT)
+    implementation(Libs.CORE_KTX)
+    implementation(Libs.LIFECYCLE_EXTENSION)
+    implementation(Libs.LIFECYCLE_RUN_TIME)
+
+    // COMPOSE
+    implementation(Libs.COMPOSE_RUNTIME)
+    implementation(Libs.COMPOSE_UI)
+    implementation(Libs.COMPOSE_FOUNDATION_LAYOUT)
+    implementation(Libs.COMPOSE_MATERIAL)
+    implementation(Libs.COMPOSE_UI_GRAPHICS)
+    implementation(Libs.COMPOSE_UI_TOOLING)
+    implementation(Libs.COMPOSE_RUNTIME_LIVEDATA)
+    implementation(Libs.COMPOSE_ANIMATION)
+    implementation(Libs.COMPOSE_NAVIGATION)
+    implementation(Libs.COMPOSE_ICON)
+    implementation(Libs.COMPOSE_ACTIVITY)
+    implementation(Libs.COMPOSE_CONSTRAINT)
+    implementation(Libs.COMPOSE_VIEW_MODEL)
+
+    implementation(Libs.INSETS)
+    implementation(Libs.COIL)
+    implementation(Libs.KOIN_CORE)
+    implementation(Libs.KOIN_COMPOSE)
+    implementation(Libs.KOIN_ANDROID)
 }

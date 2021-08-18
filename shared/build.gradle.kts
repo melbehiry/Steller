@@ -2,71 +2,73 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
+    kotlin("native.cocoapods")
     id("com.android.library")
     id("kotlin-android-extensions")
     id("kotlinx-serialization")
 }
-group = "com.elbehiry.steller"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     gradlePluginPortal()
     google()
-    jcenter()
     mavenCentral()
     maven { setUrl("https://dl.bintray.com/ekito/koin") }
 }
 kotlin {
     android()
-    ios {
-        binaries {
-            framework {
-                baseName = "shared"
-            }
-        }
+
+    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
+        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+        else -> ::iosX64
     }
+
+    iosTarget("ios") {}
+
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        ios.deploymentTarget = "14.1"
+        frameworkName = "shared"
+        podfile = project.file("../iosApp/Podfile")
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":depconstraints"))
                 // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
-
+                implementation(Libs.COROUTINES)
                 // Ktor
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
-
+                implementation(Libs.KTOR_CORE)
+                implementation(Libs.KTOR_JSON)
+                implementation(Libs.KTOR_LOGGING)
+                implementation(Libs.KTOR_SERIALIZATION)
                 // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
-
+                implementation(Libs.KOTLIN_SERIALIZATION)
                 // koin
-                api("org.koin:koin-core:${Versions.koin}")
+                implementation(Libs.KOIN_CORE)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
+                api(project(":depconstraints"))
+                implementation(Libs.KTOR_ANDROID)
             }
         }
         val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:${Versions.junit}")
-            }
+            dependencies {}
         }
         val iosMain by getting
         val iosTest by getting
     }
 }
 android {
-    compileSdkVersion(AndroidSdk.compile)
+    compileSdk = Versions.COMPILE_SDK
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(AndroidSdk.min)
-        targetSdkVersion(AndroidSdk.target)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.MIN_SDK
+        targetSdk = Versions.TARGET_SDK
     }
     buildTypes {
         getByName("release") {
@@ -74,16 +76,3 @@ android {
         }
     }
 }
-val packForXcode by tasks.creating(Sync::class) {
-    group = "build"
-    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
-    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
-    inputs.property("mode", mode)
-    dependsOn(framework.linkTask)
-    val targetDir = File(buildDir, "xcode-frameworks")
-    from({ framework.outputDirectory })
-    into(targetDir)
-}
-tasks.getByName("build").dependsOn(packForXcode)

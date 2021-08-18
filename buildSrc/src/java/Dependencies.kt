@@ -1,10 +1,10 @@
 
 object Versions {
-    const val kotlin = "1.4.10"
-    const val kotlinCoroutines = "1.3.9-native-mt"
-    const val ktor = "1.4.0"
-    const val kotlinxSerialization = "1.0.0-RC"
-    const val koin = "3.0.0-alpha-4"
+    const val kotlin = "1.5.20"
+    const val kotlinCoroutines = "1.5.1"
+    const val ktor = "1.6.2"
+    const val kotlinxSerialization = "1.2.2"
+    const val koin = "3.1.2"
     const val sqlDelight = "1.4.2"
 
     const val sqliteJdbcDriver = "3.30.1"
