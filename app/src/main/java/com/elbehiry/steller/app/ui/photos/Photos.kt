@@ -3,19 +3,17 @@ package com.elbehiry.steller.app.ui.photos
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.elbehiry.steller.app.ui.main.MainViewModel
@@ -31,11 +29,12 @@ fun Photos(
 ) {
     val viewModel = getViewModel<MainViewModel>()
 
-    val photos: List<Photo> by viewModel.photoList.observeAsState(listOf())
-    val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
+    val photos by viewModel.photoList.collectAsState()
+    val isLoading: Boolean by viewModel.isLoading.collectAsState()
     LoadingContent(loading = isLoading) {
         LazyVerticalGrid(
-            cells = GridCells.Adaptive(minSize = 128.dp),
+            cells = GridCells.Fixed(2),
+            contentPadding= PaddingValues(8.dp),
             modifier = Modifier.padding(bottom = 64.dp)
         ) {
             items(photos) { photo ->
@@ -57,7 +56,6 @@ fun PhotoItem(
         modifier = modifier
             .fillMaxWidth()
             .height(150.dp)
-            .padding(2.dp)
             .clickable { onDetails(photo.id) },
         elevation = 8.dp,
         shape = RoundedCornerShape(8.dp)
@@ -65,6 +63,7 @@ fun PhotoItem(
         Image(
             painter = rememberImagePainter(photo.urls?.thumb ?: ""),
             contentDescription = null,
+            contentScale= ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
     }
