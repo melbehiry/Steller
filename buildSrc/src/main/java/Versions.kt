@@ -8,5 +8,4 @@ object Versions {
     const val ANDROID_GRADLE_PLUGIN = "7.0.0"
     const val KOTLIN = "1.5.10"
     const val COMPOSE = "1.0.0"
-    const val KOTLIN_SERIALIZATION = "1.0.0-RC"
 }

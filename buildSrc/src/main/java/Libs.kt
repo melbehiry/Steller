@@ -1,4 +1,8 @@
 object Libs {
+    const val APP_COMPAT = "androidx.appcompat:appcompat"
+    const val CORE_KTX = "androidx.core:core-ktx"
+    const val LIFECYCLE_EXTENSION = "androidx.lifecycle:lifecycle-extensions"
+    const val LIFECYCLE_RUN_TIME = "androidx.lifecycle:lifecycle-runtime-ktx"
     const val COMPOSE_UI = "androidx.compose.ui:ui"
     const val COMPOSE_UI_GRAPHICS = "androidx.compose.ui:ui-graphics"
     const val COMPOSE_UI_TOOLING = "androidx.compose.ui:ui-tooling"
@@ -21,5 +25,12 @@ object Libs {
     const val KOIN_COMPOSE = "io.insert-koin:koin-androidx-compose"
     const val KOIN_KTOR = "io.insert-koin:koin-ktor"
     const val KOIN_LOGGER = "io.insert-koin:koin-logger-slf4j"
+    const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
+    const val KTOR_CORE = "io.ktor:ktor-client-core"
+    const val KTOR_JSON = "io.ktor:ktor-client-json"
+    const val KTOR_LOGGING = "io.ktor:ktor-client-logging"
+    const val KTOR_SERIALIZATION = "io.ktor:ktor-client-serialization"
+    const val KTOR_ANDROID = "io.ktor:ktor-client-android"
+    const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-core"
 
 }
