@@ -19,6 +19,13 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+                implementation(compose.runtime)
+                implementation(compose.material)
+                implementation(compose.preview)
+                implementation(compose.foundation)
+                implementation(compose.materialIconsExtended)
+                implementation(compose.foundation)
+                implementation(compose.animation)
             }
         }
         val jvmTest by getting
