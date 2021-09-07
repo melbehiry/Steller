@@ -6,6 +6,7 @@ object Versions {
     const val TARGET_SDK = 30
     const val MIN_SDK = 21
     const val ANDROID_GRADLE_PLUGIN = "7.0.0"
-    const val KOTLIN = "1.5.10"
-    const val COMPOSE = "1.0.0"
+    const val KOTLIN = "1.5.21"
+    const val COMPOSE = "1.0.2"
+    const val COMPOSE_DESKTOP = "1.0.0-alpha2"
 }
