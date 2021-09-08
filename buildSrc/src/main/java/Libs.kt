@@ -32,5 +32,8 @@ object Libs {
     const val KTOR_SERIALIZATION = "io.ktor:ktor-client-serialization"
     const val KTOR_ANDROID = "io.ktor:ktor-client-android"
     const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-core"
+    const val KAMEL_IMAGE = "com.alialbaali.kamel:kamel-image"
+    const val DECOMPOSE_JVM = "com.arkivanov.decompose:decompose-jvm"
+    const val DECOMPOSE_EXT = "com.arkivanov.decompose:extensions-compose-jetbrains-jvm"
 
 }

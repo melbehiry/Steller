@@ -22,6 +22,8 @@ val core = "1.6.0"
 val lifecycle = "2.3.1"
 val lifecycleExt = "2.2.0"
 val coroutines = "1.5.1"
+val kamelImage = "0.2.1"
+val decomposeExt = "0.2.6"
 
 dependencies{
     constraints {
@@ -58,5 +60,8 @@ dependencies{
         api("${Libs.KTOR_SERIALIZATION}:$ktor")
         api("${Libs.KTOR_ANDROID}:$ktor")
         api("${Libs.KOTLIN_SERIALIZATION}:$kotlinxSerialization")
+        api("${Libs.KAMEL_IMAGE}:$kamelImage")
+        api("${Libs.DECOMPOSE_JVM}:$decomposeExt")
+        api("${Libs.DECOMPOSE_EXT}:$decomposeExt")
     }
 }

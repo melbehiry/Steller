@@ -18,14 +18,17 @@ kotlin {
     sourceSets {
         val jvmMain by getting {
             dependencies {
+                api(project(":depconstraints"))
                 implementation(compose.desktop.currentOs)
                 implementation(compose.runtime)
                 implementation(compose.material)
                 implementation(compose.preview)
                 implementation(compose.foundation)
                 implementation(compose.materialIconsExtended)
-                implementation(compose.foundation)
                 implementation(compose.animation)
+                implementation(Libs.KAMEL_IMAGE)
+                implementation(Libs.DECOMPOSE_EXT)
+                implementation(Libs.DECOMPOSE_JVM)
             }
         }
         val jvmTest by getting
