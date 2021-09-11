@@ -19,6 +19,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 api(project(":depconstraints"))
+                implementation(project(":shared"))
                 implementation(compose.desktop.currentOs)
                 implementation(compose.runtime)
                 implementation(compose.material)
@@ -29,6 +30,8 @@ kotlin {
                 implementation(Libs.KAMEL_IMAGE)
                 implementation(Libs.DECOMPOSE_EXT)
                 implementation(Libs.DECOMPOSE_JVM)
+                // koin
+                implementation(Libs.KOIN_CORE)
             }
         }
         val jvmTest by getting
